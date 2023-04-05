@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+
+        /*   
+            엘리먼트 : 요소 노드, 어트리뷰트 노드, 텍스트 노드로 만들어지는 가상 DOM 개념
+            컴포넌트 : 엘리먼트를 반환하는 개념, 화면의 구성 단위(어떻게 할지는 개발자 마음인듯)
+        */
+        /* 클래스형 컴포넌트 */
+        // class HelloWorld extends React.Component {
+        //     render() {
+        //         return React.createElement(
+        //             'h1',
+        //             {className : 'greeting'},
+        //             'Hello World'
+        //         );
+        //     }
+        // }
+
+        /* 함수형 컴포넌트 */
+        function HelloWorld() {
+            /* class는 예약어라 class 안됨 그리고 객체로 바뀌면서 프로퍼티로 바뀌는 거라 className이 맞음 */
+            return React.createElement('h1', {id : "greeting", className : 'greeting', key : 0}, 'Hello World');
+        }
+
+        function MeToo() {
+            return React.createElement('h1', {id : 'MeToo', key : 1}, 'MeToo!');
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render([HelloWorld(), MeToo()]);
+    </script>
+</body>
+</html>
