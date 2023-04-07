@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!-- JSX를 위한 바벨 -->
+</head>
+<body>
+    <!-- 
+        리액트 엘리먼트는 불변객체(const)이다.
+        엘리먼트를 생성한 이후에는 해당 엘리먼트의 자식이나 속성을 변경할 수 없다.
+        (엘리먼트는 영화에서 하나의 프레임처럼 특정 시점의 UI를 나타낸다.)
+
+        따라서 엘리먼트를 업데이트 하기 위해서는 완전히 새로운 엘리먼트를 만들고 ReactDom.reneder로 다시
+        런디랑을 하는 방식을 사용한다.
+     -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        function tickEvent() {
+            const element = (
+                <>
+                    <h1>is Working?</h1>
+                    <h3>Is Working in {new Date().toLocaleTimeString()}</h3>
+                </>
+            )
+            
+            /* 
+                가상돔에 그리고 실제 돔이랑 달라진 부분만 제 렌더링 해줌
+            */
+
+            root.render(element);
+        }
+
+        setInterval(tickEvent, 1000);
+        
+        /* 
+            1초마다 tick 함수를 호출하여 새로운 엘리먼트를 생성하고 rendering 한다.
+            매 초마다 새로운 엘리먼트를 만들어서 다시 랜더링 하지만
+            이건 가상돔에 변경을 적용하는 것 뿐이며 실제 DOM은 가상돔과 비교하여 변경된 부분만을 재 렌더링 하고있다.
+        */
+    </script>
+</body>
+</html>

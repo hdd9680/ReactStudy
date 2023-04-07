@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!-- JSX를 위한 바벨 -->
+    <style>
+        .class {
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- 바벨 트랜스 컴파일 설정 -->
+    <script type="text/babel">
+
+
+        
+        function hi() {
+            console.log('Hi');
+        }
+        
+        /* 
+            class 아니고 className 임, onclick 아니고 onClick(Camel Case)임 프로퍼티로 들어가서 이런거임 
+            {} 하면 자바스크립트로 인식해줌
+
+            참고로 스타일은 javascript 객체로 넘겨야함
+
+            그리고 JSX 엘리먼트 안에서는 주석이 좀 이상함 특히 () 이걸로 안에 여러요소가 있는 경우는 주석이 의도한 대로 동작하지 않음
+        */
+        const helloworld = <h1 id="title" /* class="class" */ className="class" /* onclick={hi} */ onClick={hi}> Hello World!</h1>;
+
+        ReactDOM.createRoot(document.getElementById('root')).render(helloworld);
+    </script>
+</body>
+</html>
