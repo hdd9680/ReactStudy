@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!-- JSX를 위한 바벨 -->
+</head>
+<body>
+    
+    <!-- 
+        자식 노드의 자식노드를 추가하면 props에 child라는 속석으로 들어있다
+     -->
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function ChildNodePrinter(props) {
+
+            console.log(props)
+
+            return  <>
+                        <h1>자식 노드가 가지고 있는 값은?</h1>
+                        <h3>children:<font style={{color: 'orangeRed'}}>{props.children}</font></h3>
+                    </>;
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render([
+            <ChildNodePrinter>텍스트 노드</ChildNodePrinter>
+            , <ChildNodePrinter><div>텍스트 노드</div></ChildNodePrinter>
+            , <ChildNodePrinter><div>1</div><div>2</div><div>3</div></ChildNodePrinter>
+        ]);
+    </script>
+
+</body>
+</html>

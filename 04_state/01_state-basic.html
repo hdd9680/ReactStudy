@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!-- JSX를 위한 바벨 -->
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        class Counter extends React.Component {
+
+            // 클래스형 컴포넌트에서 props 전달 방법은 생성자에서 전달받고 React.Component의 생성자에도 전달해야함
+            constructor(props) {
+                super(props);
+
+                // state는 컴포넌트 내부에서 변경가능한 상태값임(반드시 Object 형태)
+                // porps는 읽기 전용값임(애초에 부모한테 영향일 끼칠 수 없음)
+                // 참고로 함수영 컴포넌트에서는 state 사용 불가 대신 hooks를 사용하여 상태 관리 가능
+                this.state = {
+                    number : 0,
+                };
+            }
+
+            // setState 메소드로 객체 넘기면 넘긴 state로 재 렌더링 해줌
+            render() {
+                const {number} = this.state;
+
+                console.log(number);
+
+                return (
+                    <>
+                        <h1>{this.state.number}</h1>
+                        <button onClick={() => this.setState({number : number + 1})}>++</button>
+                        <button onClick={() => this.setState({number : number - 1})}>--</button>
+                    </>)
+            }
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<Counter/>);
+
+    </script>
+
+</body>
+</html>
