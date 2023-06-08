@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!-- JSX를 위한 바벨 -->
+</head>
+<body>
+    <!-- 
+        props는 부모 컴포넌트에서 자식 컴포넌트로 넘겨주는 매개변수
+        무조건 오브젝트 형태로 전달해야함
+     -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const name1 = "홍길동";
+        const name2 = "유관순";
+
+        // 컴포넌트 호출 시 props를 넘기지 않으면 props는 빈 객체가 생성된다
+        function Title(props) {
+            console.log(props); 
+            return <h1>안녕하세요 {props.name}님 하이요</h1>;
+        }
+
+        // 기본 props 값 설정
+        Title.defaultProps = {
+            name : '안중근'
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render( [<Title name={name1}/>
+                                                                    , <Title name={name2}/>
+                                                                    , <Title/>]);
+    </script>
+
+</body>
+</html>
