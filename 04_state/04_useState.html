@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!-- JSX를 위한 바벨 -->
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        /*
+            함수형 컴포넌트는 기본적으로 스테트이 사용이 불가했는데
+            React 16.8 버전 이후 부터 React 객체에 useState 함수로 state 사용이 가능해졌다.
+        */
+        const useState = React.useState;
+        
+        function Say() {
+
+            /*
+                state 사용 변수 마다 useState를 하여 관리 가능
+            */
+            /*
+            const [message, setMessage] = useState('아무말');
+            const [color, setColor] = useState('white');
+            const [backgroundColor, setBackGroundColor] = useState('black')
+
+            return (
+                <>
+                    <h1 style={{color, backgroundColor}}>{message}</h1>
+                    <div>
+                        <button onClick={() => setMessage('하이요')}>입장</button>
+                        <button onClick={() => setMessage('바이요')}>퇴장</button>
+                    </div>
+                    <div>
+                        <button onClick={() => setColor('red')}>red</button>
+                        <button onClick={() => setColor('green')}>green</button>
+                        <button onClick={() => setColor('blue')}>blue</button>
+                    </div>
+                    <div>
+                        <button onClick={() => setBackGroundColor('white')}>white</button>
+                        <button onClick={() => setBackGroundColor('black')}>black</button>
+                    </div>
+                </>
+            )
+            */
+
+            /*
+                클래스형 컴포넌트 처럼 객체로 관리하면 state 객체 하나로 컴포넌트의 제어 가능
+            */
+            const [state, setState] = useState({
+                message : '아무말',
+                color : 'white',
+                backgroundColor : 'black',
+            });
+
+            const {color} = state;
+            const {backgroundColor} = state;
+            const {message} = state;
+
+            return (
+                <>
+                    <h1 style={{color, backgroundColor}}>{message}</h1>
+                    <div>
+                        <button onClick={() => setState({...state, message : '하이요'})}>입장</button>
+                        <button onClick={() => setState({...state, message : '바이요'})}>퇴장</button>
+                    </div>
+                    <div>
+                        <button onClick={() => setState({...state, color : 'red'})}>red</button>
+                        <button onClick={() => setState({...state, color : 'green'})}>green</button>
+                        <button onClick={() => setState({...state, color : 'blue'})}>blue</button>
+                    </div>
+                    <div>
+                        <button onClick={() => setState({...state, backgroundColor : 'white'})}>white</button>
+                        <button onClick={() => setState({...state, backgroundColor : 'black'})}>black</button>
+                    </div>
+                </>
+            )
+
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<Say/>);
+
+    </script>
+
+</body>
+</html>

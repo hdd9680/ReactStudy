@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!-- JSX를 위한 바벨 -->
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        /*
+            리액트 에서 사용되는 이벤트는 하기의 링크에 있는 이벤트들을 사용 가능하며 React만의 예약어가
+            이미 정의되어있으므로 필요한 기능은 하기의 이벤트 타입을 보면서 개발해야할듯함
+            https://ko.reactjs.org/docs/events.html
+        */
+
+        class EventButton extends React.Component {
+
+            /* 생략 가능 */
+            // constructor(props) {
+            //     super(props);
+            // }
+
+            /* 1. 인라인 함수로 이벤트 바인드 */
+            // render() {
+            //     return (
+            //         <>
+            //             <h1 onClick={() => alert('알럿')}>{this.props.children}</h1>
+            //         </>
+            //     )
+            // }
+            
+            /* 2. 함수 정의 하여 이벤트 바인드(이 때 함수 바인드 시 반드시 this 사용하여야함) */
+            // onClickEvent = function() {
+            //     alert('알럿');
+            // }
+            
+            // render() {
+            //     return (
+            //         <>
+            //             <h1 onClick={this.onClickEvent}>{this.props.children}</h1>
+            //         </>
+            //     )
+            // }
+            
+            /* 3. props로 전달받은 함수를 이벤트 바인드 */
+            render() {
+                return (
+                    <>
+                        <h1 onClick={this.props.onClick}>{this.props.children}</h1>
+                    </>
+                )
+            }
+
+        }
+
+        /* 1번, 2번용 */
+        // ReactDOM.createRoot(document.getElementById('root')).render(<EventButton>이벤트버튼</EventButton>);
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<EventButton onClick={() => alert('알럿')}>이벤트버튼</EventButton>);
+    </script>
+
+</body>
+</html>
