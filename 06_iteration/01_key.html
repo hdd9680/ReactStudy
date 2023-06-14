@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!-- JSX를 위한 바벨 -->
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState} = React;
+
+        function Items({names}) {
+
+            /*
+                key를 설정하여 반복된 요소간의 차이를 줄 수있음
+                아마 PK 값을 key로 설정할 거같음
+            */
+            return (
+                <>
+                    <ul>
+                        {names.map((name, index) => <li key={index}>{name}</li>)}
+                    </ul>
+                </>
+            )
+        }
+
+        const names = ['김일성', '김이성', '김삼성', '김사성', '김오성', '김육성', '김칠성', '김팔성', '김구성'];
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<Items names={names}/>);
+    </script>
+
+</body>
+</html>
